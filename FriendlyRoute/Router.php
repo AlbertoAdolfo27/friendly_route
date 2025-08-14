@@ -94,6 +94,18 @@ class Router
     }
 
     // ------------------------------------------------------------------------------------------------
+    // CHECK REQUEST
+    public function checkRequest(string $urlPattern, string $method): bool
+    {
+        if ($this->matchUrlPattern($urlPattern) && !$this->status["FOUND"]) :
+            if (strtoupper($method) == $_SERVER["REQUEST_METHOD"]) :
+                return true;
+            endif;
+        endif;
+        return false;
+    }
+
+    // ------------------------------------------------------------------------------------------------
     // MATCH URL PATTERN
     private function matchUrlPattern(string $urlPattern): bool
     {
