@@ -76,7 +76,7 @@ class Router
     // GET REQUEST URI
     private function getRequestUri(): string
     {
-        return parse_url(str_replace($this->config["projectDir"], "", $_SERVER["REQUEST_URI"]), PHP_URL_PATH);
+        return parse_url(preg_replace("#^" . $this->config["projectDir"] . "#", "", $_SERVER["REQUEST_URI"], 1), PHP_URL_PATH);
     }
 
     // ------------------------------------------------------------------------------------------------
